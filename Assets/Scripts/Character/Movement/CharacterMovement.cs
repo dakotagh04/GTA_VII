@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 namespace Gameplay.Character
 {
@@ -41,9 +42,9 @@ namespace Gameplay.Character
         {
             _movementEnabled = enabled;
         }
-
         public void Move(Vector2 velocityVector)
         {
+
             if (!_movementEnabled)
             {
                 velocityVector = Vector2.zero;

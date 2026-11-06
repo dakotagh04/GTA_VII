@@ -26,6 +26,19 @@ namespace Gameplay.Interactions{
             }
         }
 
+        public void TriggerInteraction()
+        {
+            if (_interactionEnabled)
+            {
+                if(closestInteractable != null)
+                {
+                    closestInteractable.Interact(this);
+                }
+
+                OnInteraction?.Invoke(closestInteractable);
+            }
+        }
+
         public void SetInteractionEnabled(bool enabled)
         {
             _interactionEnabled = enabled;

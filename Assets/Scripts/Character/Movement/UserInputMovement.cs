@@ -1,3 +1,4 @@
+using Gameplay.Interactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ namespace Gameplay.Character{
     {
         private CharacterMovement _characterMovement;
         private CharacterHabilities _characterHabilities;
+        private CharacterInteractor _interactor;
         void Awake()
         {
             _characterMovement = GetComponent<CharacterMovement>();
@@ -18,6 +20,12 @@ namespace Gameplay.Character{
             if (_characterHabilities == null)
             {
                 Debug.LogError("[UserInputHabilities] CharacterHabilities is null! Add a CharacterHabilities component to the GameObject.");
+            }
+
+            _interactor = GetComponent<CharacterInteractor>();
+            if (_interactor == null)
+            {
+                Debug.LogError("[UserInputInteractor] CharacterInteractor is null! Add a CharacterInteractor component to the GameObject.");
             }
         }
         void Update()
@@ -43,6 +51,11 @@ namespace Gameplay.Character{
             if (InputSystem.actions["Attack"].WasPressedThisFrame())
             {
                 _characterHabilities.Attack();
+            }
+
+            if (InputSystem.actions["Interact"].WasPressedThisFrame())
+            {
+                _interactor.TriggerInteraction();
             }
         }
     }
